@@ -9,6 +9,16 @@
             "UnauthRoleName": "qscognito-prototype-dev-20190820090056-unauthRole",
             "StackName": "qscognito-prototype-dev-20190820090056",
             "StackId": "arn:aws:cloudformation:us-east-1:669356653346:stack/qscognito-prototype-dev-20190820090056/b1f6f040-c363-11e9-945d-0e33f445a498"
+        },
+        "categories": {
+            "function": {
+                "qscognitoprototypecfa18a71PostConfirmation": {
+                    "GROUP": "default"
+                }
+            },
+            "auth": {
+                "qscognitoprototypecfa18a71": {}
+            }
         }
     }
 }

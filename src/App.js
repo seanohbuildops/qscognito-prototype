@@ -1,12 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+import Amplify from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react';
+import awsconfig from './aws-exports';
 import './App.css';
+
+Amplify.configure(awsconfig);
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -23,4 +26,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
