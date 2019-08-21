@@ -101,8 +101,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "qscognito-prototype-dev-20190820090056-deployment",
-					"S3Key": "amplify-builds/qscognitoprototypecfa18a71PostConfirmation-375259717933516f5269-build.zip"
+					"S3Bucket": "qscognito-prototype-dev-20190820172227-deployment",
+					"S3Key": "amplify-builds/qscognitoprototypecfa18a71PostConfirmation-3159322b515671313364-build.zip"
 				}
 			}
 		},

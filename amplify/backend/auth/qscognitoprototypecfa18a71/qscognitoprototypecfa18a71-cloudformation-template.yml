@@ -412,6 +412,42 @@ Resources:
           authenticated: !Ref authRoleArn
     DependsOn: IdentityPool
   
+  # Custom Resources!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+  AdminsUserPoolGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: admins
+      UserPoolId: !Ref UserPool
+    DependsOn: UserPool
+
+  TenantUserPoolGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: tenants
+      UserPoolId: !Ref UserPool
+    DependsOn: UserPool
+
+  AdminUserPoolUser:
+    Type: AWS::Cognito::UserPoolUser
+    Properties:
+      Username: buildopsadmin
+      UserPoolId: !Ref UserPool
+      UserAttributes:
+        - Name: "email"
+          Value: "sean@buildops.com"
+        - Name: "email_verified"
+          Value: true
+        - Name: "name"
+          Value: "buildopsadmin"
+    DependsOn: AdminsUserPoolGroup
+
+  AdminToAdminUserPoolGroup:
+    Type: AWS::Cognito::UserPoolUserToGroupAttachment
+    Properties:
+      GroupName: !Ref AdminsUserPoolGroup
+      Username: !Ref AdminUserPoolUser
+      UserPoolId: !Ref UserPool
+    DependsOn: AdminUserPoolUser
 
 Outputs :
   

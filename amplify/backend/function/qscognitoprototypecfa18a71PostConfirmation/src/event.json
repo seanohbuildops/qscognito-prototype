@@ -1,7 +1,5 @@
 {
-    "request": {
-        "userPoolId": "testID",
-        "userName": "testUser"
-    },
+    "userPoolId": "us-east-1_UuDm4dFon",
+    "userName": "sean",
     "response": {}
 }

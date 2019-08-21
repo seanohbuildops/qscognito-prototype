@@ -13,17 +13,20 @@ exports.handler = async (event, context, callback) => {
     Username: event.userName,
   };
 
-  await cognitoidentityserviceprovider.getGroup(groupParams, async (err) => {
-    if (err) {
-      await cognitoidentityserviceprovider.createGroup(groupParams).promise();
-    }
-  }).promise();
+  console.log('group: ' + process.env.GROUP);
+  console.log('user pool id: ' + event.userPoolId);
+  console.log('username: ' + event.userName);
 
-
-  cognitoidentityserviceprovider.adminAddUserToGroup(addUserParams, (err) => {
-    if (err) {
-      callback(err);
+  // get group, if it doesn't exist then create the group
+  cognitoidentityserviceprovider.getGroup(groupParams).promise()
+  .catch(err => {
+    if(err && err.code === 'ResourceNotFoundException') {
+      return cognitoidentityserviceprovider.createGroup(groupParams).promise();
+    } else {
+      throw err;
     }
-    callback(null, event);
-  });
+  })
+  // add the user to the group
+  .then(() => cognitoidentityserviceprovider.adminAddUserToGroup(addUserParams).promise())
+  .then(data => callback(null, data), err => callback(err));
 };
